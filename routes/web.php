@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/', 'DonationController@index')->name('welcome');
+Route::post('/finish', function(){
+    return redirect()->route('welcome');
+})->name('donation.finish');
+
+Route::post('/donation/store', 'DonationController@submitDonation')->name('donation.store');
+Route::post('/notification/handler', 'DonationController@notificationHandler')->name('notification.handler');
